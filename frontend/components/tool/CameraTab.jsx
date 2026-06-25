@@ -9,8 +9,6 @@ const WS_URL = process.env.NEXT_PUBLIC_API_URL+"/ws/detect";
 const FRAME_INTERVAL_MS = 100;          // 10 FPS to backend
 const JPEG_QUALITY = 0.6;
 
-
-
 const CameraTab = () => {
 
     const canvasRef = useRef(null);

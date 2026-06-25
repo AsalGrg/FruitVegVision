@@ -23,7 +23,6 @@ const TextRevealSection = () => {
                             trigger: containerRef.current,
                             pin: true,
                             scrub: 1,
-                            markers:true,
                             start: 'top top',
                             end: "+=2000"
                         },

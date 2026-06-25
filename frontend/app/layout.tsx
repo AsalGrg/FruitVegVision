@@ -13,8 +13,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Productify",
-  description: "Manage your products with ease in few clicks.",
+  title: "FoodVeggie",
+  description: "Measure your diet in a click.",
 };
 
 export default function RootLayout({
@@ -27,9 +27,10 @@ export default function RootLayout({
       <link
         rel="stylesheet"
         href="https://unpkg.com/lenis@1.3.23/dist/lenis.css"
+        precedence="default"
       ></link>
-      <Navbar />
       <body className="min-h-full flex flex-col bg-warm-white">
+        <Navbar />
         <AnimationSetup>
           <ToolContextProvider>{children}</ToolContextProvider>
         </AnimationSetup>

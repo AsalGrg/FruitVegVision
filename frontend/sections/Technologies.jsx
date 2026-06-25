@@ -13,7 +13,7 @@ const Technologies = () => {
     }, [])
 
     return (
-        <section className='px-8 py-20'>
+        <section className='px-8 py-20' id='technologies_section'>
             <div className=' text-center flex flex-col items-center w-full space-y-8'>
                 <div className='text-wrapper space-y-4 w-full'>
                     <h2 className='flex flex-wrap w-full justify-center gap-2'>

@@ -4,6 +4,11 @@
   --warm-white: #fffdf1;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+
 @theme inline {
   --font-inter: var(--font-inter);
   --color-warm-white: var(--warm-white);

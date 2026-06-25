@@ -10,7 +10,7 @@ const HeroVideo = () => {
                 autoPlay
                 muted
                 preload="auto"
-                playsinline
+                playsInline
                 loop
                 src={'/hero_video.mp4'}
                 className='aspect-video rounded-md'
