@@ -1,12 +1,39 @@
-export const metadata = {
-  title: 'Real-time Food Detection',
-  description: 'YOLO object detection with calorie estimation',
-}
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import Navbar from "@/components/Navbar";
+import AnimationSetup from "@/components/AnimationSetup";
+import {ToolContextProvider} from '@/context/ToolsContext'
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
+});
+
+export const metadata: Metadata = {
+  title: "Productify",
+  description: "Manage your products with ease in few clicks.",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" className={`${inter.variable} h-full antialiased`}>
+      <link
+        rel="stylesheet"
+        href="https://unpkg.com/lenis@1.3.23/dist/lenis.css"
+      ></link>
+      <Navbar />
+      <body className="min-h-full flex flex-col bg-warm-white">
+        <AnimationSetup>
+          <ToolContextProvider>{children}</ToolContextProvider>
+        </AnimationSetup>
+      </body>
     </html>
-  )
+  );
 }

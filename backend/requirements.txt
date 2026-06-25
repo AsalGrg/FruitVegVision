@@ -8,4 +8,4 @@ pillow>=10.2.0
 
 # Optional: only needed when you have a real trained .pt model to serve.
 # If missing, the server falls back to demo mode automatically.
-# ultralytics>=8.2.0
+ultralytics>=8.2.0

@@ -9,7 +9,7 @@ from typing import Any, Dict, List
 
 import cv2
 import numpy as np
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 
 from config import CALORIES, CLASSES, COLORS
@@ -121,6 +121,34 @@ async def websocket_detect(websocket: WebSocket):
         logger.error(f"WS fatal error for {client}: {exc}")
         await websocket.close()
 
+@app.post('/photo/detect')
+async def get_photo_prediction(file: UploadFile = File(...)):
+    try:
+        # Read and decode the uploaded file
+        img_bytes = await file.read()
+        nparr = np.frombuffer(img_bytes, np.uint8)
+        frame = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+
+        if frame is None:
+            raise HTTPException(status_code=400, detail="Failed to decode image")
+
+        # Run inference in thread pool so asyncio stays responsive
+        loop = asyncio.get_event_loop()
+        detections: List[Dict[str, Any]] = await loop.run_in_executor(
+            executor, detector.predict, frame
+        )
+
+        return {
+            "detections": detections,
+            "demo_mode": detector.demo_mode,
+            "timestamp": loop.time(),
+        }
+
+    except HTTPException:
+        raise
+    except Exception as exc:
+        logger.error(f"Photo detection error: {exc}")
+        raise HTTPException(status_code=500, detail=str(exc))
 
 if __name__ == "__main__":
     import uvicorn

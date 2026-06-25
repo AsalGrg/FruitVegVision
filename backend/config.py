@@ -89,4 +89,4 @@ def _generate_colors() -> dict:
 
 COLORS = _generate_colors()
 
-MODEL_PATH = os.environ.get("MODEL_PATH", "best.pt")
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "last.pt")
