@@ -123,7 +123,7 @@ const PhotoTab = () => {
             setPhotoResults(data.data.detections)
             console.log(data)
         } catch (error) {
-            console.log('error')
+            console.log(error)
         }
         setIsAnalyzing(false)
         draw()
