@@ -1,8 +1,9 @@
-CLASSES = [
+export const CLASSES = [
     "egg", "banana", "cabbage", "watermelon", "broccoli", "cucumber", "tomato", "lemon",
     "strawberry", "orange", "carrot", "potato", "cauliflower", "bell_pepper", "grapes",
     "pineapple", "apple", "mango", "pear", "onion",
 ]
+
 
 export function generateColors() {
   const colors= {};
